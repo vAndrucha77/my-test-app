@@ -7,7 +7,7 @@ def signing_key = 'Passw0rd1!'
 
 node("dockerslave") {
     withCredentials([
-        [$class: 'UsernamePasswordMultiBinding', credentialsId: ci-pipeline, usernameVariable: 'DTR_USR', passwordVariable: 'DTR_PWD'],
+        [$class: 'UsernamePasswordMultiBinding', credentialsId: 'ci-pipeline', usernameVariable: 'DTR_USR', passwordVariable: 'DTR_PWD'],
         [$class: 'StringBinding', credentialsId: signing_key, variable: 'SIGNING_KEY'],
     ]){
         git url: "${git_url}"
