@@ -42,7 +42,7 @@ node ("dockerslave") {
         }
     }
 
-    stage('Deploy a service on DEE') {
+    /* stage('Deploy a service on DEE') {
         sh "cd /home/jenkins && \
         source env.sh && \
         docker service update --image dtr.andreas.dtcntr.net/docker-cemea/my-test-app:latest mta || \
@@ -50,5 +50,5 @@ node ("dockerslave") {
                               --replicas 3 \
                               --publish published=8089,target=5000 \
                               dtr.andreas.dtcntr.net/docker-cemea/my-test-app"
-     }
+     } */
 }

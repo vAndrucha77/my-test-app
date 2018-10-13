@@ -6,16 +6,12 @@ app = Flask(__name__)
 
 # list of cat images
 images = [
-    "https://brunocapuano.files.wordpress.com/2016/06/swarmnado.gif",
-    "https://i.giphy.com/OP7kIfBat5sGY.gif",
-    "https://camo.githubusercontent.com/3ebbd5d2989aef90e30562ac37cad8656f4a1881/687474703a2f2f692e67697068792e636f6d2f3441433131476d517a46564b672e676966",
-    "https://cdn-images-1.medium.com/max/1600/1*3eOlQ1Ea6y7tZKJlzI2q5w.gif",
-    "https://mir-s3-cdn-cf.behance.net/project_modules/disp/cbc69a17085171.562b572169e35.gif",
-    "http://bestanimations.com/Humans/Eyes/eyes-animated-gif-11.gif",
-    "https://cdn-images-1.medium.com/max/1600/1*g9ee7RUD831R9n6Km5Jizg.gif",
-    "http://bestanimations.com/Cartoons/Simpsons/the-simpsons-animated-gif-4.gif",
-    "http://www.fubiz.net/wp-content/uploads/2016/07/totorofitness2.gif",
-    "https://media.giphy.com/media/pt0EKLDJmVvlS/giphy.gif"
+    "http://i.imgur.com/Ej8Oyf8.gif",
+    "http://i.imgur.com/b1NIPz5.gif",
+    "http://33.media.tumblr.com/5927af2667fc508a05669869a4bc12e2/tumblr_njau87kB0I1qjsn9po1_400.gif",
+    "http://25.media.tumblr.com/59e1f9be5d6daa7d571313e46ec6e5cf/tumblr_mvudvqk4KQ1smbojlo1_500.gif",
+    "http://25.media.tumblr.com/3b4854331c2ecc8bc5c4adc59742ca66/tumblr_mtulnpDNun1rrav49o1_400.gif",
+    "https://drive.google.com/open?id=0ByZw7yGAswlyN3B5SEp2VjU2bHM"
 ]
 
 @app.route('/')

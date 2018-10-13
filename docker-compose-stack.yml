@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   web:
-    image: vandrucha77/myfunnyapp:test
+    image: vandrucha77/mytestapp:test
     deploy:
       replicas: 5
       resources:
