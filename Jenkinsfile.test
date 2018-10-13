@@ -17,8 +17,7 @@ node("dockerslave") {
         println commit_id
          
         stage "build"
-        sh "cd jenkins-demo-app && \
-        docker -D build -t ${dtr_url}/${dtr_repo}:${commit_id} ."
+        sh "docker -D build -t ${dtr_url}/${dtr_repo}:${commit_id} ."
         
         stage "publish"
         sh "export NOTARY_DELEGATION_PASSPHRASE=${SIGNING_KEY} && \
