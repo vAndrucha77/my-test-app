@@ -3,7 +3,7 @@ def dtr_url = 'dtr.andreas.dtcntr.net'
 def dtr_repo = 'docker-cemea/my-test-app'
 
 def git_url = 'https://github.com/vAndrucha77/my-test-app.git'
-def signing_key = 'Passw0rd1!'
+def signing_key = 'dct_root_passphrase'
 
 node("dockerslave") {
     withCredentials([
