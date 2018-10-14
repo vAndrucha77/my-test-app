@@ -23,7 +23,6 @@ node("dockerslave") {
         sh "export NOTARY_DELEGATION_PASSPHRASE=${SIGNING_KEY} && \
         notary -d ~/.docker/trust key import /home/jenkins/key.pem --role=targets/releases && \
         notary -d ~/.docker/trust key list && \
-        notary -s https://${dtr_url} -d ${HOME}/.docker/trust --tlscacert /home/jenkins/ca.crt"
         
         sh "export DOCKER_CONTENT_TRUST=1 \
         DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE=${SIGNING_KEY} && \
