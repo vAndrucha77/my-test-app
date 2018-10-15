@@ -11,7 +11,7 @@ def DTR_PWD='Passw0rd1!'
 def git_url = 'https://github.com/vAndrucha77/my-test-app.git'
 def signing_key = 'dct_root_passphrase'
 
-node("dockerslave") {
+node("JenkinsSlave") {
     withCredentials([
         [$class: 'UsernamePasswordMultiBinding', credentialsId: 'ci-pipeline', usernameVariable: 'DTR_USR', passwordVariable: 'DTR_PWD'],
         [$class: 'StringBinding', credentialsId: signing_key, variable: 'SIGNING_KEY'],
