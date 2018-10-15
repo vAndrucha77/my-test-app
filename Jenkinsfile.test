@@ -20,7 +20,10 @@ node("dockerslave") {
         sh "docker -D build -t ${dtr_url}/${dtr_repo}:${commit_id} ."
         
         stage "publish"
-        sh "export NOTARY_DELEGATION_PASSPHRASE=${SIGNING_KEY} && \
+        sh "whoami && \
+        export NOTARY_DELEGATION_PASSPHRASE=${SIGNING_KEY} && \
+        notary -s https://${dtr_url} -d ${HOME}/.docker/trust --tlscacert /home/jenkins/ca.crt && \
+        notary -d ~/.docker/trust key import /home/jenkins/key.pem --role=targets/releases && \
         notary -d ~/.docker/trust key list"
         
         sh "export DOCKER_CONTENT_TRUST=1 \
