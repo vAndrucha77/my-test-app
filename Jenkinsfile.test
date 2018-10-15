@@ -28,6 +28,7 @@ node("JenkinsSlave") {
         
         stage "publish"
         sh "export NOTARY_DELEGATION_PASSPHRASE=${SIGNING_KEY} && \
+        whoami && \
         notary ${NOTARY_OPTS} key import /home/jenkins/key.pem && \
         notary -d .docker/trust key list"
         
