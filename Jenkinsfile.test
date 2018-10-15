@@ -1,7 +1,13 @@
 def dtr_creds = 'ae438414-d411-4d68-8193-001b6f61c5cb'
 def dtr_url = 'dtr.andreas.dtcntr.net'
 def dtr_repo = 'docker-cemea/my-test-app'
-
+def NOTARY_ROOT_PASSPHRASE='Passw0rd1!'
+def NOTARY_TARGETS_PASSPHRASE='Passw0rd1!'
+def NOTARY_SNAPSHOT_PASSPHRASE='Passw0rd1!'
+def NOTARY_DELEGATION_PASSPHRASE='Passw0rd1!'
+def NOTARY_OPTS='"-d /home/jenkins/.docker/trust -s https://${DTR_URL} --tlscacert /home/jenkins/.docker/tls/${DTR_URL}/ca.crt"'
+def DTR_USR='ci-pipeline'
+def DTR_PWD='Passw0rd1!'
 def git_url = 'https://github.com/vAndrucha77/my-test-app.git'
 def signing_key = 'dct_root_passphrase'
 
@@ -22,6 +28,7 @@ node("dockerslave") {
         
         stage "publish"
         sh "export NOTARY_DELEGATION_PASSPHRASE=${SIGNING_KEY} && \
+        notary ${NOTARY_OPTS} key import /home/jenkins/key.pem && \
         notary -d .docker/trust key list"
         
         sh "export DOCKER_CONTENT_TRUST=1 \
