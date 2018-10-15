@@ -9,19 +9,24 @@ node("dockerslave") {
     withCredentials([
         [$class: 'UsernamePasswordMultiBinding', credentialsId: 'ci-pipeline', usernameVariable: 'DTR_USR', passwordVariable: 'DTR_PWD'],
         [$class: 'StringBinding', credentialsId: signing_key, variable: 'SIGNING_KEY'],
+        [$class: 'FileBinding', credentialsId: 'dtrrootca', variable: 'DTR_CA_CRT'],
     ]){
         git url: "${git_url}"
           
         sh "git rev-parse HEAD > .git/commit-id"
         def commit_id = readFile('.git/commit-id').trim()
         println commit_id
-         
+
+        dir("/checkout/.docker/tls/${dtr_url}") {
+                            sh 'cp -p "$DTR_CA_CRT" ca.crt'
+                            sh 'chmod 600 ca.crt'
+                        }
+
         stage "build"
         sh "docker -D build -t ${dtr_url}/${dtr_repo}:${commit_id} ."
         
         stage "publish"
-        sh "whoami && \
-        export NOTARY_DELEGATION_PASSPHRASE=${SIGNING_KEY} && \
+        sh "export NOTARY_DELEGATION_PASSPHRASE=${SIGNING_KEY} && \
         notary -s https://${dtr_url} -d ${HOME}/.docker/trust --tlscacert /home/jenkins/ca.crt && \
         notary -d ~/.docker/trust key import /home/jenkins/key.pem --role=targets/releases && \
         notary -d ~/.docker/trust key list"
