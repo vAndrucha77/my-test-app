@@ -17,17 +17,12 @@ node("dockerslave") {
         def commit_id = readFile('.git/commit-id').trim()
         println commit_id
 
-        dir("/checkout/.docker/tls/${dtr_url}") {
-                            sh 'cp -p "$DTR_CA_CRT" ca.crt'
-                            sh 'chmod 600 ca.crt'
-                        }
-
         stage "build"
         sh "docker -D build -t ${dtr_url}/${dtr_repo}:${commit_id} ."
         
         stage "publish"
         sh "export NOTARY_DELEGATION_PASSPHRASE=${SIGNING_KEY} && \
-        notary -s https://${dtr_url} -d ${HOME}/.docker/trust --tlscacert /home/jenkins/ca.crt && \
+        notary -s https://${dtr_url} -d ${HOME}/.docker/trust --tlscacert /home/jenkins/${dtr_url}/ca.crt && \
         notary -d ~/.docker/trust key import /home/jenkins/key.pem --role=targets/releases && \
         notary -d ~/.docker/trust key list"
         
