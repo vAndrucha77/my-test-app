@@ -1,5 +1,5 @@
 # Use Alpine as base
-FROM alpine:latest
+FROM alpine:latest AS build
 #FROM mongo:3.2.1
 
 # LABEL Maintainer
@@ -8,11 +8,9 @@ LABEL maintainer="andreas@docker.com andreas.lambrecht@docker.com"
 # Install curl
 RUN apk --no-cache add py-pip libpq python-dev curl
 
-# Install python and pip
-RUN apk --no-cache add py2-pip
-
-# Upgrade pip
-RUN pip install --upgrade pip
+# Install python and pip + upgrade pip 
+RUN apk --no-cache add py2-pip && \
+    pip install --upgrade pip
 
 # Install Python modules needed by the Python app
 COPY requirements.txt /usr/src/app/
@@ -31,15 +29,3 @@ HEALTHCHECK CMD curl --fail http://localhost:5000 || exit 1
 
 # Run the application
 CMD ["python", "/usr/src/app/app.py"]
-
-# Scan the image with Aqua Micro Scanner
-# RUN apt-get update && apt-get -y install ca-certificates
-# ADD https://get.aquasec.com/microscanner .
-# RUN chmod +x microscanner
-# RUN ./microscanner NWViNGYyZjJiOWFj --html > amc-output.html && rm -rf /microscanner
-
-# RUN apk add --update wget && apk add --no-cache ca-certificates && update-ca-certificates && \
-#     wget -O /microscanner https://get.aquasec.com/microscanner && \
-#     chmod +x /microscanner && \
-#     /microscanner NWViNGYyZjJiOWFj --html > amc-output.html && \
-#     rm -rf /microscanner
