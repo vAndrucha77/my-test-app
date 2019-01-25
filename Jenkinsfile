@@ -11,14 +11,14 @@ node ("dockerslave") {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("dtr.andreas.dtcntr.net/docker-cemea/my-test-app")
+        app = docker.build("vandrucha77/my-test-app:1.1")
     }
 
     stage('Aqua MicroScanner') {
         /* This step scans the image for high vulnerabilities and
          * FAILS if any are found */
 
-        aquaMicroscanner imageName: 'dtr.andreas.dtcntr.net/docker-cemea/my-test-app:latest', notCompliesCmd: 'exit1', onDisallowed: 'fail', outputFormat: 'html'
+        aquaMicroscanner imageName: 'vandrucha77/my-test-app:1.1', notCompliesCmd: 'exit1', onDisallowed: 'fail', outputFormat: 'html'
     }
 
     stage('Test image') {
