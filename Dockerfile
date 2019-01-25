@@ -1,18 +1,17 @@
 # Use Alpine as base
-FROM alpine:latest
+FROM alpine:3.7
 #FROM mongo:3.2.1
 
 # LABEL Maintainer
-LABEL maintainer="andreas@docker.com andreas.lambrecht@docker.com"
+LABEL maintainer="andreas@aquasec.com andreas.lambrecht@aquasec.com"
 
 # Install curl
 RUN apk --no-cache add py-pip libpq python-dev curl
 
-# Install python and pip
-RUN apk --no-cache add py2-pip
-
-# Upgrade pip
-RUN pip install --upgrade pip
+# Install curl, python and pip + upgrade pip 
+RUN apk --no-cache add py-pip libpq python-dev curl && \
+    apk --no-cache add py2-pip && \
+    pip install --upgrade pip
 
 # Install Python modules needed by the Python app
 COPY requirements.txt /usr/src/app/
@@ -38,8 +37,8 @@ CMD ["python", "/usr/src/app/app.py"]
 # RUN chmod +x microscanner
 # RUN ./microscanner NWViNGYyZjJiOWFj --html > amc-output.html && rm -rf /microscanner
 
-# RUN apk add --update wget && apk add --no-cache ca-certificates && update-ca-certificates && \
-#     wget -O /microscanner https://get.aquasec.com/microscanner && \
-#     chmod +x /microscanner && \
-#     /microscanner NWViNGYyZjJiOWFj --html > amc-output.html && \
-#     rm -rf /microscanner
+RUN apk add --update wget && apk add --no-cache ca-certificates && update-ca-certificates && \
+     wget -O /microscanner https://get.aquasec.com/microscanner && \
+     chmod +x /microscanner && \
+     /microscanner NWViNGYyZjJiOWFj --html > amc-output.html && \
+     rm -rf /microscanner

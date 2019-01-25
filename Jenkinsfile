@@ -31,16 +31,17 @@ node ("dockerslave") {
         sh 'echo "Test successful and passed"'
     }
 
-    stage('Push image') {
+    /* stage('Push image') {
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://dtr.andreas.dtcntr.net', 'DTRUserPassword') {
+      /*  docker.withRegistry('https://dtr.andreas.dtcntr.net', 'DTRUserPassword') {
             app.push("2.${env.BUILD_NUMBER}")
             app.push("latest")
         }
-    }
+    } */
+    
 
     /* stage('Deploy a service on DEE') {
         sh "cd /home/jenkins && \
