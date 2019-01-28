@@ -37,8 +37,8 @@ CMD ["python", "/usr/src/app/app.py"]
 # RUN chmod +x microscanner
 # RUN ./microscanner NWViNGYyZjJiOWFj --html > amc-output.html && rm -rf /microscanner
 
-RUN apk add --update wget && apk add --no-cache ca-certificates && update-ca-certificates && \
-     wget -O /microscanner https://get.aquasec.com/microscanner && \
-     chmod +x /microscanner && \
-     /microscanner NWViNGYyZjJiOWFj --html > amc-output.html && \
-     rm -rf /microscanner
+# RUN apk add --update wget && apk add --no-cache ca-certificates && # update-ca-certificates && \
+#     wget -O /microscanner https://get.aquasec.com/microscanner && \
+#     chmod +x /microscanner && \
+#     /microscanner NWViNGYyZjJiOWFj --html > amc-output.html && \
+#     rm -rf /microscanner
