@@ -40,7 +40,7 @@ node () {
             app.push("2.${env.BUILD_NUMBER}")
             app.push("latest")
         } */
-        docker push vandrucha77/my-test-app:1.1
+        docker push 'vandrucha77/my-test-app:1.1'
     }    
 
     /* stage('Deploy a service on DEE') {
