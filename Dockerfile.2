@@ -1,0 +1,6 @@
+FROM vandrucha77/myfunnyapp:1.0
+ADD ./microscanner .
+RUN apk add --update wget && apk add --no-cache ca-certificates && update-ca-certificates && \
+    chmod +x /microscanner && \
+    /microscanner NWViNGYyZjJiOWFj && \
+    rm -rf /microscanner
