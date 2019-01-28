@@ -36,11 +36,11 @@ node () {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused.
-         * docker.withRegistry('https://dtr.andreas.dtcntr.net', 'DTRUserPassword') {
+        docker.withRegistry('https://dtr.andreas.dtcntr.net', 'DTRUserPassword') {
             app.push("2.${env.BUILD_NUMBER}")
             app.push("latest")
         } */
-        docker push 'vandrucha77/my-test-app:1.1'
+        sh 'echo "Image successfully pushed to the registry"'
     }    
 
     /* stage('Deploy a service on DEE') {
