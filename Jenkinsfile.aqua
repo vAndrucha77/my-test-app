@@ -18,7 +18,7 @@ node () {
         /* This step scans the image for high vulnerabilities and
          * FAILS if any are found */
 
-        aqua hideBase: false, hostedImage: '', localImage: 'vandrucha77/my-test-app:aqua', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: true, registry: 'Docker Hub', showNegligible: true
+        aqua hideBase: false, hostedImage: '', localImage: 'vandrucha77/mytestapp:aqua', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: true, registry: 'Docker Hub', showNegligible: true
     }
 
     stage('Test image') {
