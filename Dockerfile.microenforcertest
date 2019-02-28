@@ -1,0 +1,14 @@
+# Use Alpine as base
+FROM 652124307910.dkr.ecr.eu-west-1.amazonaws.com/naf-echo
+
+# Add Aqua MicroEnforcer and Policies
+ADD microenforcer /bin/microenforcer
+ADD policy.json /etc/aquasec/policy/policy.json
+ADD firewall.json /etc/aquasec/policy/firewall.json
+RUN chmod +x /bin/microenforcer
+ENV AQUA_SET_USER=false
+
+CMD ["/bin/sh"]
+
+# Add Entrypoint for MicroEnforcer
+ENTRYPOINT ["/bin/microenforcer"]

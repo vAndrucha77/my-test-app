@@ -1,0 +1,16 @@
+# Use Alpine as base
+FROM vandrucha77/myfunnyapp:2.0 
+
+# LABEL Maintainer
+LABEL maintainer="andreas@aquasec.com andreas.lambrecht@aquasec.com"
+
+# Adding Aqua Server variables
+ARG AQUA_SERVER_URL
+ARG AQUA_USERNAME
+ARG AQUA_PASSWORD
+
+# Adding MicroScanner for scanning
+RUN apk add --no-cache ca-certificates && update-ca-certificates
+ADD ./microscanner .
+RUN chmod +x /microscanner
+RUN /microscanner && rm /microscanner
