@@ -11,7 +11,7 @@ node () {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("vandrucha77/my-test-app:aqua")
+        app = docker.build("vandrucha77/mytestapp:aqua")
     }
 
     stage('Aqua MicroScanner') {
