@@ -14,7 +14,7 @@ node () {
         app = docker.build("vandrucha77/mytestapp:acsp")
     }
 
-    stage('Aqua MicroScanner') {
+    stage('Aqua CSP Scanner') {
         /* This step scans the image for high vulnerabilities and
          * FAILS if any are found */
 
