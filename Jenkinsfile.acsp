@@ -37,7 +37,7 @@ node () {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
          docker.withRegistry('', '') {
-            app.push("")
+            app.push("aqua")
             
         } 
         sh 'echo "Image successfully pushed to the registry"'
