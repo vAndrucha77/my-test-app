@@ -36,8 +36,8 @@ node () {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-         docker.withRegistry('', '') {
-            app.push("aqua")
+         docker.withRegistry('', 'DockerHub') {
+            app.push("acsp")
             
         } 
         sh 'echo "Image successfully pushed to the registry"'
